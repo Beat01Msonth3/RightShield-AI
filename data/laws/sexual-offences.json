@@ -1,0 +1,45 @@
+{
+  "act": "Penal Code (Chapter 7:01)",
+  "actShort": "Penal Code",
+  "year": 1930,
+  "jurisdiction": "Malawi",
+  "totalEntries": 3,
+  "entries": [
+    {
+      "id": "penal-sec-132",
+      "act": "Penal Code (Chapter 7:01)",
+      "actShort": "Penal Code",
+      "section": "Section 132",
+      "title": "Definition of Rape",
+      "content": "Any person who has unlawful carnal knowledge of a woman or girl, without her consent, or with her consent if the consent is obtained by force or by means of threats or intimidation of any kind, or by fear of bodily harm, is guilty of the felony termed rape.",
+      "keywords": ["rape", "consent", "sexual assault", "force", "threats", "crime", "felony"],
+      "page": 45,
+      "source": "Penal Code Cap 7:01, Laws of Malawi",
+      "category": "sexual_offences"
+    },
+    {
+      "id": "penal-sec-138",
+      "act": "Penal Code (Chapter 7:01)",
+      "actShort": "Penal Code",
+      "section": "Section 138",
+      "title": "Defilement of Girls under 16",
+      "content": "Any person who unlawfully and carnally knows any girl under the age of sixteen years is guilty of a felony and is liable to imprisonment for life.",
+      "keywords": ["defilement", "child abuse", "under 16", "minor", "statutory rape", "life imprisonment"],
+      "page": 47,
+      "source": "Penal Code Cap 7:01, Laws of Malawi",
+      "category": "sexual_offences"
+    },
+    {
+      "id": "penal-sec-247",
+      "act": "Penal Code (Chapter 7:01)",
+      "actShort": "Penal Code",
+      "section": "Section 247",
+      "title": "Assault Causing Actual Bodily Harm",
+      "content": "Any person who commits an assault occasioning actual bodily harm is guilty of a misdemeanor and is liable to imprisonment for five years.",
+      "keywords": ["assault", "bodily harm", "beating", "injury", "physical violence", "imprisonment"],
+      "page": 78,
+      "source": "Penal Code Cap 7:01, Laws of Malawi",
+      "category": "penal_code"
+    }
+  ]
+}

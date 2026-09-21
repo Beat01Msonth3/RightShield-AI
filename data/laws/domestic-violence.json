@@ -1,0 +1,57 @@
+{
+  "act": "Prevention of Domestic Violence Act",
+  "actShort": "PDVA 2006",
+  "year": 2006,
+  "jurisdiction": "Malawi",
+  "totalEntries": 4,
+  "entries": [
+    {
+      "id": "pdva-sec-2",
+      "act": "Prevention of Domestic Violence Act (2006)",
+      "actShort": "PDVA",
+      "section": "Section 2",
+      "title": "Interpretation and Definition of Domestic Violence",
+      "content": "Domestic violence means any act of violence, threat, or intimidation committed by a person against a spouse, former spouse, child, or dependant residing in the same household, including physical abuse, sexual abuse, emotional, verbal or psychological abuse, and economic abuse.",
+      "keywords": ["domestic violence", "definition", "physical abuse", "emotional abuse", "economic abuse", "spouse", "dependant", "nkhanza"],
+      "page": 3,
+      "source": "Prevention of Domestic Violence Act 2006, Laws of Malawi",
+      "category": "domestic_violence"
+    },
+    {
+      "id": "pdva-sec-8",
+      "act": "Prevention of Domestic Violence Act (2006)",
+      "actShort": "PDVA",
+      "section": "Section 8",
+      "title": "Application for Protection Order",
+      "content": "Any victim of domestic violence, or any person acting on behalf of the victim with or without their consent in urgent cases, may apply to a Magistrate Court for a protection order prohibiting the respondent from committing acts of domestic violence, entering the victim's place of residence or workplace, or communicating with the victim.",
+      "keywords": ["protection order", "court", "magistrate", "application", "prohibit", "restraining order", "residence"],
+      "page": 7,
+      "source": "Prevention of Domestic Violence Act 2006, Laws of Malawi",
+      "category": "domestic_violence"
+    },
+    {
+      "id": "pdva-sec-12",
+      "act": "Prevention of Domestic Violence Act (2006)",
+      "actShort": "PDVA",
+      "section": "Section 12",
+      "title": "Occupation Order",
+      "content": "The court may grant an occupation order declaring that the victim is entitled to occupy the matrimonial home or domestic premises to the exclusion of the respondent, regardless of whether the premises are owned or rented by the respondent.",
+      "keywords": ["occupation order", "home", "matrimonial home", "evict abuser", "exclusion", "residence"],
+      "page": 10,
+      "source": "Prevention of Domestic Violence Act 2006, Laws of Malawi",
+      "category": "domestic_violence"
+    },
+    {
+      "id": "pdva-sec-19",
+      "act": "Prevention of Domestic Violence Act (2006)",
+      "actShort": "PDVA",
+      "section": "Section 19",
+      "title": "Duties of Police Officers",
+      "content": "A police officer responding to a domestic violence incident shall assist the victim by securing medical treatment, accompanying the victim to collect personal belongings, advising on legal rights, and arresting the respondent where reasonable grounds exist to believe an offence has been committed.",
+      "keywords": ["police", "duties", "arrest", "victim support", "medical care", "police assistance", "997"],
+      "page": 14,
+      "source": "Prevention of Domestic Violence Act 2006, Laws of Malawi",
+      "category": "domestic_violence"
+    }
+  ]
+}

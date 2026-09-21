@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/* ─── Tailwind dark-mode strategy: class-based ───────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── CSS Design Tokens ───────────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --clr-brand: 168 64% 28%;         /* teal-700 */
+  --clr-brand-light: 168 84% 40%;
+  --clr-accent: 221 83% 53%;        /* blue-600 */
+  --clr-danger: 0 84% 60%;
+
+  /* Light surfaces */
+  --clr-bg: 210 40% 98%;            /* slate-50 */
+  --clr-surface: 0 0% 100%;         /* white */
+  --clr-surface-2: 215 20% 95%;     /* slate-100 */
+  --clr-border: 215 16% 85%;        /* slate-200 */
+  --clr-text: 215 25% 12%;          /* slate-900 */
+  --clr-muted: 215 14% 40%;         /* slate-500 */
+}
+
+.dark {
+  --clr-bg: 222 47% 5%;             /* slate-950 */
+  --clr-surface: 222 47% 9%;        /* slate-900 */
+  --clr-surface-2: 217 33% 14%;     /* slate-800 */
+  --clr-border: 217 19% 22%;        /* slate-700 */
+  --clr-text: 213 31% 91%;          /* slate-100 */
+  --clr-muted: 215 14% 60%;         /* slate-400 */
+}
+
+/* ─── Base Reset ──────────────────────────────────────────────────────────── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: hsl(var(--clr-bg));
+    color: hsl(var(--clr-text));
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Focus-visible ring */
+  :focus-visible {
+    @apply outline-2 outline-offset-2;
+    outline-color: hsl(var(--clr-brand));
+  }
+}
+
+/* ─── Utility Classes ─────────────────────────────────────────────────────── */
+.surface {
+  background-color: hsl(var(--clr-surface));
+  border: 1px solid hsl(var(--clr-border));
+}
+
+.surface-2 {
+  background-color: hsl(var(--clr-surface-2));
+}
+
+.text-muted {
+  color: hsl(var(--clr-muted));
+}
+
+/* ─── Card ────────────────────────────────────────────────────────────────── */
+.card {
+  @apply rounded-2xl shadow-sm;
+  background-color: hsl(var(--clr-surface));
+  border: 1px solid hsl(var(--clr-border));
+  transition: box-shadow 0.15s ease;
+}
+
+.card:hover {
+  @apply shadow-md;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-150;
+  background: linear-gradient(135deg, hsl(168 64% 28%), hsl(168 84% 36%));
+  box-shadow: 0 2px 8px hsl(168 64% 28% / 0.3);
+}
+.btn-primary:hover {
+  box-shadow: 0 4px 16px hsl(168 64% 28% / 0.4);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px hsl(168 64% 28% / 0.3);
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all duration-150;
+  background: linear-gradient(135deg, hsl(0 72% 45%), hsl(0 84% 55%));
+  box-shadow: 0 2px 8px hsl(0 72% 45% / 0.35);
+}
+.btn-danger:hover {
+  box-shadow: 0 4px 16px hsl(0 72% 45% / 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors;
+  color: hsl(var(--clr-muted));
+  border: 1px solid hsl(var(--clr-border));
+}
+.btn-ghost:hover {
+  background-color: hsl(var(--clr-surface-2));
+  color: hsl(var(--clr-text));
+}
+
+/* ─── Input ───────────────────────────────────────────────────────────────── */
+.input {
+  @apply w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-150;
+  background-color: hsl(var(--clr-surface));
+  color: hsl(var(--clr-text));
+  border: 1.5px solid hsl(var(--clr-border));
+}
+.input::placeholder {
+  color: hsl(var(--clr-muted));
+}
+.input:focus {
+  border-color: hsl(var(--clr-brand));
+  box-shadow: 0 0 0 3px hsl(var(--clr-brand) / 0.15);
+}
+
+/* ─── Chat Bubbles ─────────────────────────────────────────────────────────── */
+.bubble-user {
+  @apply rounded-2xl rounded-br-sm px-4 py-3 text-sm text-white max-w-[80%] self-end;
+  background: linear-gradient(135deg, hsl(168 64% 28%), hsl(168 84% 36%));
+}
+
+.bubble-ai {
+  @apply rounded-2xl rounded-bl-sm px-4 py-3 text-sm max-w-[85%] self-start;
+  background-color: hsl(var(--clr-surface));
+  border: 1px solid hsl(var(--clr-border));
+  color: hsl(var(--clr-text));
+}
+
+/* ─── Safety Level Badges ──────────────────────────────────────────────────── */
+.badge-safe     { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300; }
+.badge-elevated { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100  text-amber-800  dark:bg-amber-900/40  dark:text-amber-300;  }
+.badge-crisis   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300; }
+.badge-danger   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100    text-red-800    dark:bg-red-900/40    dark:text-red-300;    }
+
+/* ─── Emergency Banner ─────────────────────────────────────────────────────── */
+.emergency-banner {
+  @apply sticky top-0 z-50 flex items-center justify-between px-4 py-2 text-sm font-semibold text-white;
+  background: linear-gradient(90deg, hsl(0 72% 45%), hsl(0 84% 55%));
+}
+
+/* ─── Animations ───────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+.animate-fade-in  { animation: fadeIn 0.2s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.3s ease-out forwards; }
+.animate-pulse-soft { animation: pulse-soft 1.8s ease-in-out infinite; }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: hsl(var(--clr-border));
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--clr-muted)); }

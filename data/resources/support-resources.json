@@ -1,0 +1,50 @@
+{
+  "resources": [
+    {
+      "id": "police-997",
+      "name": "Malawi Police Service",
+      "nameCh": "Apolisi a Malawi",
+      "type": "police",
+      "phone": "997",
+      "description": "Emergency response service for immediate danger and physical threat.",
+      "descriptionCh": "Thandizo la apolisi pa ngozi yanyamulira.",
+      "available247": true,
+      "tollFree": true
+    },
+    {
+      "id": "yoneco-5600",
+      "name": "GBV Crisis Line (YONECO)",
+      "nameCh": "Mzere wa GBV (YONECO)",
+      "type": "hotline",
+      "phone": "5600",
+      "description": "24/7 toll-free helpline providing confidential counseling, legal advice, and referral for GBV survivors.",
+      "descriptionCh": "Mzere waulere wa 24/7 wa thandizo la nkhanza za pakhomo ndi chiwerewere.",
+      "available247": true,
+      "tollFree": true
+    },
+    {
+      "id": "child-line-116",
+      "name": "National Child Helpline",
+      "nameCh": "Mzere wa Ana wa Dziko",
+      "type": "hotline",
+      "phone": "116",
+      "description": "Toll-free crisis line for children and individuals reporting child abuse or neglect.",
+      "descriptionCh": "Mzere waulere wothandizira ana ndi kupereka lipoti la nkhanza za ana.",
+      "available247": true,
+      "tollFree": true
+    },
+    {
+      "id": "wolrec",
+      "name": "Women's Legal Resources Centre (WOLREC)",
+      "nameCh": "WOLREC",
+      "type": "ngo",
+      "phone": "+265 888 750 183",
+      "phone2": "+265 897 184 542",
+      "address": "Naperi, Kanyetta Drive, Plot no. SW8/517/3&4, Blantyre",
+      "description": "Non-governmental organization offering free legal empowerment, court representation, and rights advocacy for women in Malawi.",
+      "descriptionCh": "Gulu lomwe limapereka thandizo la chilamulo kwa amayi kwa ufulu ndi chilungamo.",
+      "available247": false,
+      "tollFree": false
+    }
+  ]
+}

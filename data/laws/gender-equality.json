@@ -1,0 +1,33 @@
+{
+  "act": "Gender Equality Act (2013)",
+  "actShort": "GEA 2013",
+  "year": 2013,
+  "jurisdiction": "Malawi",
+  "totalEntries": 2,
+  "entries": [
+    {
+      "id": "gea-sec-6",
+      "act": "Gender Equality Act (2013)",
+      "actShort": "GEA",
+      "section": "Section 6",
+      "title": "Prohibition of Harmful Cultural Practices",
+      "content": "Any person who performs, participates in, or encourages any harmful cultural, traditional or religious practice that negatively affects the health, dignity or social status of a woman or girl commits an offence and is liable to imprisonment.",
+      "keywords": ["harmful practices", "culture", "tradition", "dignity", "women rights", "forced marriage", "cleansing"],
+      "page": 4,
+      "source": "Gender Equality Act 2013, Laws of Malawi",
+      "category": "gender_equality"
+    },
+    {
+      "id": "gea-sec-7",
+      "act": "Gender Equality Act (2013)",
+      "actShort": "GEA",
+      "section": "Section 7",
+      "title": "Sexual Harassment",
+      "content": "Sexual harassment in any workplace, educational institution, or public sphere is strictly prohibited. Sexual harassment includes unwelcome sexual advances, requests for sexual favours, or other verbal or physical conduct of a sexual nature.",
+      "keywords": ["sexual harassment", "workplace", "school", "advances", "favours", "prohibited"],
+      "page": 5,
+      "source": "Gender Equality Act 2013, Laws of Malawi",
+      "category": "gender_equality"
+    }
+  ]
+}

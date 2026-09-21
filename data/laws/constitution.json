@@ -1,0 +1,45 @@
+{
+  "act": "Constitution of the Republic of Malawi",
+  "actShort": "Malawi Constitution",
+  "year": 1994,
+  "jurisdiction": "Malawi",
+  "totalEntries": 3,
+  "entries": [
+    {
+      "id": "const-sec-19",
+      "act": "Constitution of the Republic of Malawi",
+      "actShort": "Constitution",
+      "section": "Section 19",
+      "title": "Human Dignity and Personal Liberty",
+      "content": "The dignity of all persons shall be inviolable. No person shall be subjected to torture of any kind or to cruel, inhuman or degrading treatment or punishment.",
+      "keywords": ["dignity", "torture", "cruel treatment", "degrading treatment", "human rights", "liberty"],
+      "page": 12,
+      "source": "Constitution of Malawi 1994",
+      "category": "constitution"
+    },
+    {
+      "id": "const-sec-24",
+      "act": "Constitution of the Republic of Malawi",
+      "actShort": "Constitution",
+      "section": "Section 24",
+      "title": "Rights of Women",
+      "content": "Women have the right to full and equal protection of the law, and have the right not to be discriminated against on the basis of their gender or marital status. Any law that discriminates against women on the basis of gender or marital status shall be invalid.",
+      "keywords": ["women rights", "equality", "discrimination", "marital status", "gender equality", "protection of law"],
+      "page": 15,
+      "source": "Constitution of Malawi 1994",
+      "category": "constitution"
+    },
+    {
+      "id": "const-sec-42",
+      "act": "Constitution of the Republic of Malawi",
+      "actShort": "Constitution",
+      "section": "Section 42",
+      "title": "Rights of Arrested, Detained and Accused Persons",
+      "content": "Every person who is arrested or detained has the right to be informed promptly in a language they understand of the reason for arrest, to remain silent, to consult a legal practitioner, and to be released or brought before a court within 48 hours.",
+      "keywords": ["arrest", "police", "detained", "remain silent", "lawyer", "48 hours", "court"],
+      "page": 24,
+      "source": "Constitution of Malawi 1994",
+      "category": "constitution"
+    }
+  ]
+}
