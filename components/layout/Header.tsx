@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSessionStore } from '@/store/session';
 import { useTranslation } from '@/hooks/useTranslation';
 import { PanicExit } from '@/components/emergency/PanicExit';
-import { EmergencyButton } from '@/components/emergency/EmergencyButton';
+import { SketchSun, SketchMoon, SketchEye, SketchEyeOff, SketchAlert } from '@/components/ui/SketchIcons';
 
 export const Header: React.FC = () => {
   const appMode = useSessionStore((s) => s.appMode);
@@ -15,16 +15,13 @@ export const Header: React.FC = () => {
   const language = useSessionStore((s) => s.language);
   const setLanguage = useSessionStore((s) => s.setLanguage);
   const clearSession = useSessionStore((s) => s.clearSession);
+  const setEmergencyOpen = useSessionStore((s) => s.setEmergencyModalOpen);
 
   const { t } = useTranslation();
   const isDiscreet = appMode === 'discreet';
 
   const toggleDiscreetMode = () => {
     setAppMode(isDiscreet ? 'normal' : 'discreet');
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'ny' : 'en');
   };
 
   const toggleTheme = () => {
@@ -67,35 +64,45 @@ export const Header: React.FC = () => {
 
         {/* Right action bar */}
         <div className="flex flex-col items-stretch gap-2">
+          
           {/* Light / Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="rounded-md border border-slate-600 px-2.5 py-2 text-xs font-semibold text-slate-200 transition-colors hover:bg-slate-800"
+            className="flex items-center justify-center gap-2 rounded-md border border-slate-600 px-2.5 py-2 text-xs font-semibold text-slate-200 transition-colors hover:bg-slate-800"
             title={`Switch to ${colorTheme === 'light' ? 'Dark' : 'Light'} Mode`}
           >
-            <span className="md:hidden">{colorTheme === 'light' ? '☀️' : '🌙'}</span><span className="hidden md:inline">{colorTheme === 'light' ? '☀️ Light' : '🌙 Dark'}</span>
+            {colorTheme === 'light' ? <SketchSun className="w-4 h-4" /> : <SketchMoon className="w-4 h-4" />}
+            <span className="hidden md:inline">{colorTheme === 'light' ? 'Light' : 'Dark'}</span>
           </button>
 
-          {/* Language toggle */}
-          <button
-            onClick={toggleLanguage}
-            className="px-2.5 py-1 text-xs font-semibold border border-slate-600 rounded-md hover:bg-slate-800 transition-colors text-slate-200"
-            title="Switch Language"
-          >
-            <span className="md:hidden">{language === 'en' ? 'MW' : 'EN'}</span><span className="hidden md:inline">{language === 'en' ? '🇲🇼 Chichewa' : '🇬🇧 English'}</span>
-          </button>
+          {/* Language Toggles */}
+          <div className="flex gap-2">
+            <button
+              onClick={() => setLanguage('ny')}
+              className={`flex-1 px-2.5 py-1 text-xs font-semibold border rounded-md transition-colors ${language === 'ny' ? 'bg-teal-700 text-white border-teal-700' : 'border-slate-600 hover:bg-slate-800 text-slate-200'}`}
+            >
+              MW
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`flex-1 px-2.5 py-1 text-xs font-semibold border rounded-md transition-colors ${language === 'en' ? 'bg-teal-700 text-white border-teal-700' : 'border-slate-600 hover:bg-slate-800 text-slate-200'}`}
+            >
+              EN
+            </button>
+          </div>
 
           {/* Discreet mode toggle */}
           <button
             onClick={toggleDiscreetMode}
-            className={`px-2.5 py-1 text-xs font-semibold rounded-md border transition-colors ${
+            className={`flex items-center justify-center gap-2 px-2.5 py-1 text-xs font-semibold rounded-md border transition-colors ${
               isDiscreet
                 ? 'bg-blue-600 text-white border-blue-600'
                 : 'border-slate-600 hover:bg-slate-800 text-slate-200'
             }`}
             title={isDiscreet ? t.a11yNormalMode : t.a11yDiscreetMode}
           >
-            <span className="md:hidden">🔒</span><span className="hidden md:inline">{isDiscreet ? '👁️ Discreet ON' : '🔒 Discreet'}</span>
+            {isDiscreet ? <SketchEye className="w-4 h-4" /> : <SketchEyeOff className="w-4 h-4" />}
+            <span className="hidden md:inline">{isDiscreet ? 'Discreet ON' : 'Discreet'}</span>
           </button>
 
           {/* End Session button */}
@@ -113,7 +120,15 @@ export const Header: React.FC = () => {
           )}
 
           {/* Emergency button */}
-          {!isDiscreet && <EmergencyButton className="justify-center md:justify-start" />}
+          {!isDiscreet && (
+            <button
+              onClick={() => setEmergencyOpen(true)}
+              className="flex items-center justify-center gap-2 w-full px-2.5 py-2 bg-red-600 text-white text-xs font-bold rounded-md hover:bg-red-700 transition-colors"
+            >
+              <SketchAlert className="w-4 h-4" />
+              <span className="hidden md:inline">I need help now</span>
+            </button>
+          )}
 
           {/* Panic exit */}
           <PanicExit className="justify-center md:justify-start" />

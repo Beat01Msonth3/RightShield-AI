@@ -1,6 +1,15 @@
 import type { AIResponse } from '@/types/chat';
 import type { SafetyFlag } from './types';
 
+// ---------- 1. Situation type ----------
+export type Situation = {
+  victim_role: 'self' | 'mother' | 'father' | 'child' | 'other';
+  perpetrator_role: 'father' | 'mother' | 'boss' | 'partner' | 'other';
+  harm_type: 'physical_violence' | 'sexual_violence' | 'discrimination' | 'threat' | 'other';
+  is_user_the_victim: boolean;
+  legal_domains: string[];
+};
+
 const DOMESTIC_VIOLENCE_PATTERNS = [
   /\b(my|her|his|our) (father|mother|husband|wife|partner|spouse|boyfriend|girlfriend|in[- ]laws?).{0,60}\b(beats?|hits?|hurts?|abuses?|attacks?)\b/i,
   /\b(beats?|hits?|hurts?|abuses?|attacks?)\b.{0,60}\b(my|her|his|our) (mother|father|wife|husband|partner|spouse|daughter|son)\b/i,
@@ -20,14 +29,78 @@ export function assessDomesticViolence(message: string): DomesticViolenceAssessm
   };
 }
 
-export function getDomesticViolenceResponse(): AIResponse {
+// ---------- 2. Extract who the victim is ----------
+export function extractVictimRoleFromMessage(message: string): Situation {
+  const m = message.toLowerCase();
+
+  // Is the user talking about themselves?
+  const userIsSubject =
+    /\b(i|me|my|myself)\b/.test(m) &&
+    /\b(beat|beats|hit|hits|hurt|hurts|abuse|abuses|attack|attacks|raped|rape|assault|threaten|threatens)\b/.test(m);
+
+  let victim: Situation['victim_role'] = 'other';
+  let perpetrator: Situation['perpetrator_role'] = 'other';
+
+  // Detect victim
+  if (/\b(mother|mom|mum|mama)\b/.test(m)) victim = 'mother';
+  else if (/\b(father|dad|papa)\b/.test(m)) victim = 'father';
+  else if (/\b(child|son|daughter|baby)\b/.test(m)) victim = 'child';
+  else if (userIsSubject) victim = 'self';
+
+  // Detect perpetrator
+  if (/\b(father|dad|papa)\b/.test(m)) perpetrator = 'father';
+  else if (/\b(mother|mom|mum|mama)\b/.test(m)) perpetrator = 'mother';
+  else if (/\b(boss|employer|manager)\b/.test(m)) perpetrator = 'boss';
+  else if (/\b(boyfriend|husband|wife|partner|spouse)\b/.test(m)) perpetrator = 'partner';
+
+  const isSexual = /\b(rape|raped|sexual|assault|molest)\b/.test(m);
+
+  return {
+    victim_role: victim,
+    perpetrator_role: perpetrator,
+    harm_type: isSexual ? 'sexual_violence' : 'physical_violence',
+    is_user_the_victim: victim === 'self',
+    legal_domains: ['domestic_violence'],
+  };
+}
+
+// ---------- 3. Build the response using the situation ----------
+export function getDomesticViolenceResponse(situation?: Situation): AIResponse {
+  const isSelf = situation?.is_user_the_victim === true;
+  const victim = situation?.victim_role ?? 'other';
+
+  // Pronouns / wording
+  const subject    = isSelf ? 'you' : `your ${victim}`;
+  const verb       = isSelf ? 'are' : 'is';
+  const possessive = isSelf ? 'your'
+                   : victim === 'mother' ? 'her'
+                   : victim === 'father' ? 'his'
+                   : 'their';
+  const pronoun    = isSelf ? 'you'
+                   : victim === 'mother' ? 'she'
+                   : victim === 'father' ? 'he'
+                   : 'they';
+  const them       = isSelf ? 'you'
+                   : victim === 'mother' ? 'her'
+                   : victim === 'father' ? 'him'
+                   : 'them';
+  const readyVerb  = isSelf ? 'you are' : 'they are';
+  const hasVerb    = isSelf ? 'have'    : 'has';
+  const doesVerb   = isSelf ? 'do not'  : 'does not';
+
   return {
     category: 'domestic_violence',
     severity: 'high',
     acknowledgement:
-      'I am sorry your mother is experiencing this. Violence in a family is not her fault, and she has the right to safety and support.',
+      `I am sorry ${subject} ${verb} experiencing this. ` +
+      `Violence in a family is not ${possessive} fault, and ${pronoun} ` +
+      `${hasVerb} the right to safety and support.`,
     explanation:
-      'If anyone is in immediate danger, move to a safer place if possible and call 997 (Police) or 5600 (GBV Crisis Line). Your mother can also seek help from a Victim Support Unit or WOLREC. She does not have to confront the person hurting her or make a report before she is ready.',
+      `If anyone is in immediate danger, move to a safer place if possible ` +
+      `and call 997 (Police) or 5600 (GBV Crisis Line). ${subject} can also ` +
+      `seek help from a Victim Support Unit or WOLREC. ${pronoun} ${doesVerb} ` +
+      `have to confront the person hurting ${them} or make a report before ` +
+      `${readyVerb} ready.`,
     legalInformation: [
       {
         act: 'Prevention of Domestic Violence Act (2006)',

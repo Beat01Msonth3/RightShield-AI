@@ -3,6 +3,7 @@
 import React from 'react';
 import type { ChatMessage } from '@/types/chat';
 import { Card } from '@/components/ui/Card';
+import { SketchBook, SketchLightbulb, SketchPhone, SketchAlert } from '@/components/ui/SketchIcons';
 
 export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   const isUser = message.role === 'user';
@@ -33,7 +34,9 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
     return (
       <div className="flex justify-start my-3">
         <div className="max-w-xl p-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-2xl text-sm text-red-800 dark:text-red-200">
-          <p className="font-bold mb-1">⚠️ Error</p>
+          <p className="font-bold mb-1 flex items-center gap-2">
+            <SketchAlert className="w-5 h-5" /> Error
+          </p>
           <p>{message.error}</p>
         </div>
       </div>
@@ -43,8 +46,7 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   return (
     <div className="flex justify-start my-4">
       <div className="max-w-2xl w-full space-y-3">
-        {/* Main response card */}
-        <Card variant="bordered" className="border-teal-100 dark:border-slate-800 shadow-sm">
+        <Card variant="bordered" className="border-teal-100 dark:border-slate-800 shadow-sm p-4">
           {/* Acknowledgement */}
           {response?.acknowledgement && (
             <p className="text-sm font-semibold text-teal-900 dark:text-teal-200 mb-2 leading-relaxed">
@@ -60,8 +62,8 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
           {/* Legal references */}
           {response?.legalInformation && response.legalInformation.length > 0 && (
             <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                📜 Malawian Legal References
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <SketchBook className="w-4 h-4" /> Malawian Legal References
               </h4>
               <div className="space-y-2">
                 {response.legalInformation.map((item, idx) => (
@@ -87,8 +89,8 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
           {/* Next steps */}
           {response?.nextSteps && response.nextSteps.length > 0 && (
             <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                💡 Recommended Action Steps
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <SketchLightbulb className="w-4 h-4" /> Recommended Action Steps
               </h4>
               <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
                 {response.nextSteps.map((step, idx) => (
@@ -104,8 +106,8 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
           {/* Resources */}
           {response?.resources && response.resources.length > 0 && (
             <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
-                📞 Available Support Services
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                <SketchPhone className="w-4 h-4" /> Available Support Services
               </h4>
               <div className="grid sm:grid-cols-2 gap-2">
                 {response.resources.map((res, idx) => (
@@ -117,9 +119,9 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
                     {res.phone && (
                       <a
                         href={`tel:${res.phone.replace(/\s+/g, '')}`}
-                        className="inline-block mt-1 font-bold text-teal-700 dark:text-teal-300 hover:underline"
+                        className="inline-flex items-center gap-1.5 mt-1 font-bold text-teal-700 dark:text-teal-300 hover:underline"
                       >
-                        📞 {res.phone}
+                        <SketchPhone className="w-3.5 h-3.5" /> {res.phone}
                       </a>
                     )}
                     <p className="text-slate-600 dark:text-slate-400 text-[11px] mt-0.5">
@@ -137,20 +139,6 @@ export const ChatBubble: React.FC<{ message: ChatMessage }> = ({ message }) => {
               {response.disclaimer}
             </p>
           )}
-
-          {/* Demo / Offline badges */}
-          <div className="mt-2 flex items-center gap-2">
-            {response?.demo && (
-              <span className="px-2 py-0.5 text-[10px] font-bold bg-purple-100 text-purple-800 rounded">
-                DEMO MODE
-              </span>
-            )}
-            {response?.offline && (
-              <span className="px-2 py-0.5 text-[10px] font-bold bg-amber-100 text-amber-800 rounded">
-                OFFLINE MODE
-              </span>
-            )}
-          </div>
         </Card>
       </div>
     </div>

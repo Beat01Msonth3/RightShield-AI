@@ -1,9 +1,31 @@
 'use client';
 
+import { SketchBook, SketchLock, SketchAlert } from '@/components/ui/SketchIcons';
 import Link from 'next/link';
 import { useSessionStore } from '@/store/session';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Card } from '@/components/ui/Card';
+
+// --- Helper sketched icons for the buttons ---
+const SketchShield = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
+
+const SketchChat = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
+const SketchSearch = ({ className }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </svg>
+);
 
 export default function Home() {
   const appMode = useSessionStore((s) => s.appMode);
@@ -66,8 +88,9 @@ export default function Home() {
               <div className="mt-3">
                 <Link
                   href="/chat"
-                  className="block w-full text-center py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition-colors"
                 >
+                  <SketchSearch className="w-4 h-4" />
                   Open Archive Search
                 </Link>
               </div>
@@ -84,7 +107,8 @@ export default function Home() {
       {/* Hero Section */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
         <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 text-xs font-bold tracking-wide uppercase">
-          🛡️ Malawian Legal Protection Assistant
+          <SketchShield className="w-4 h-4" />
+          Malawian Legal Protection Assistant
         </span>
         <h1 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
           {t.landingHero}
@@ -97,34 +121,38 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Link
             href="/chat"
-            className="w-full sm:w-auto px-8 py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl shadow-md transition-all text-center text-sm"
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl shadow-md transition-all text-sm"
           >
-            💬 {t.landingStartChat}
+            <SketchChat className="w-5 h-5" />
+            {t.landingStartChat}
           </Link>
           <Link
             href="/help"
-            className="w-full sm:w-auto px-8 py-3.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold rounded-xl shadow-sm transition-all text-center text-sm"
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold rounded-xl shadow-sm transition-all text-sm"
           >
-            📖 {t.landingBrowseRights}
+            <SketchBook className="w-5 h-5" />
+            {t.landingBrowseRights}
           </Link>
           <button
             onClick={() => setEmergencyOpen(true)}
-            className="w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md transition-all text-center text-sm flex items-center justify-center gap-2"
+            className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-md transition-all text-sm"
           >
-            🚨 {t.landingEmergencyHelp}
+            <SketchAlert className="w-5 h-5" />
+            {t.landingEmergencyHelp}
           </button>
         </div>
 
-        <p className="text-xs text-slate-500 pt-2">
-          🔒 {t.landingPrivacyNote}
+        <p className="flex items-center justify-center gap-2 text-xs text-slate-500 pt-2">
+          <SketchLock className="w-4 h-4" />
+          {t.landingPrivacyNote}
         </p>
       </div>
 
       {/* Feature Grid */}
       <div className="grid md:grid-cols-3 gap-6 pt-4">
-        <Card variant="bordered" className="space-y-2">
-          <div className="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-950 flex items-center justify-center text-teal-700 text-xl font-bold">
-            📜
+        <Card variant="bordered" className="space-y-2 p-6">
+          <div className="w-12 h-12 rounded-lg bg-teal-50 dark:bg-teal-950 flex items-center justify-center text-teal-700 mb-2">
+            <SketchBook className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-slate-900 dark:text-white">Backed by Malawian Law</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -132,9 +160,9 @@ export default function Home() {
           </p>
         </Card>
 
-        <Card variant="bordered" className="space-y-2">
-          <div className="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-950 flex items-center justify-center text-purple-700 text-xl font-bold">
-            🔐
+        <Card variant="bordered" className="space-y-2 p-6">
+          <div className="w-12 h-12 rounded-lg bg-purple-50 dark:bg-purple-950 flex items-center justify-center text-purple-700 mb-2">
+            <SketchLock className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-slate-900 dark:text-white">Session-Only Privacy</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -142,9 +170,9 @@ export default function Home() {
           </p>
         </Card>
 
-        <Card variant="bordered" className="space-y-2">
-          <div className="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-950 flex items-center justify-center text-amber-700 text-xl font-bold">
-            🚨
+        <Card variant="bordered" className="space-y-2 p-6">
+          <div className="w-12 h-12 rounded-lg bg-rose-50 dark:bg-rose-950 flex items-center justify-center text-rose-700 mb-2">
+            <SketchAlert className="w-6 h-6" />
           </div>
           <h3 className="font-bold text-slate-900 dark:text-white">Immediate Crisis Support</h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">

@@ -1,0 +1,46 @@
+
+{
+  "act": "Marriage, Divorce and Family Relations Act",
+  "actShort": "MDFRA 2015",
+  "year": 2015,
+  "jurisdiction": "Malawi",
+  "totalEntries": 4,
+  "entries": [
+    {
+      "id": "mdfra-forced-marriage",
+      "act": "Marriage, Divorce and Family Relations Act (2015)",
+      "section": "Consent & forced marriage",
+      "title": "Marriage requires free and full consent",
+      "content": "A marriage is only valid when both parties freely and fully consent. Forcing a person (including a daughter or son) into marriage is unlawful. A person forced into marriage can seek court protection and nullification of the marriage.",
+      "keywords": ["forced marriage", "force me to marry", "consent", "arranged marriage", "dad is forcing", "mother is forcing", "father forcing", "child marriage", "force to marry"],
+      "category": "marriage_family"
+    },
+    {
+      "id": "mdfra-minimum-age",
+      "act": "Marriage, Divorce and Family Relations Act (2015)",
+      "section": "Minimum age",
+      "title": "Minimum age for marriage",
+      "content": "The minimum age for marriage in Malawi is 18 years. Marriage of a person under 18 is prohibited. Forcing a child under 18 into marriage is illegal.",
+      "keywords": ["child marriage", "under 18", "minimum age", "girl forced to marry", "forced to marry young"],
+      "category": "marriage_family"
+    },
+    {
+      "id": "mdfra-economic-rights",
+      "act": "Marriage, Divorce and Family Relations Act (2015) / Gender Equality Act",
+      "section": "Economic rights of spouses",
+      "title": "Right to work and economic independence",
+      "content": "A spouse cannot lawfully force the other to stop working or to become a housewife against their will. Controlling money or preventing someone from working is a form of economic abuse and can be domestic violence under the Prevention of Domestic Violence Act.",
+      "keywords": ["stop working", "house wife", "housewife", "force me to quit", "economic abuse", "control money", "force to stop working", "be a housewife"],
+      "category": "marriage_family"
+    },
+    {
+      "id": "mdfra-rights-in-marriage",
+      "act": "Marriage, Divorce and Family Relations Act (2015)",
+      "section": "Rights of spouses",
+      "title": "Equal rights within marriage",
+      "content": "Both spouses have equal rights and dignity in marriage. One partner cannot force the other into decisions about work, body, or lifestyle. The law protects against coercion and abuse inside marriage.",
+      "keywords": ["rights in marriage", "equal rights", "spouse rights", "forced by husband", "forced by wife", "forced by fiancé", "forced by fiancée"],
+      "category": "marriage_family"
+    }
+  ]
+}

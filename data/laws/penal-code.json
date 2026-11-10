@@ -1,0 +1,36 @@
+{
+  "act": "Penal Code (Chapter 7:01)",
+  "actShort": "Penal Code",
+  "year": 1930,
+  "jurisdiction": "Malawi",
+  "totalEntries": 3,
+  "entries": [
+    {
+      "id": "penal-blackmail",
+      "act": "Penal Code (Chapter 7:01)",
+      "section": "Extortion and threats",
+      "title": "Blackmail and threats are criminal",
+      "content": "Using threats to demand money, sexual acts, silence, or any other compliance is a criminal offence (extortion / criminal intimidation). The victim can report to the police without first paying or complying. Victim Support Units and WOLREC can assist with reporting and protection.",
+      "keywords": ["blackmail", "blackmailing", "extort", "threatening to tell", "threatening to expose", "threats", "demand money", "if you tell anyone"],
+      "category": "penal_code"
+    },
+    {
+      "id": "penal-coercion",
+      "act": "Penal Code / Gender Equality Act",
+      "section": "Coercion and harmful practices",
+      "title": "Forcing someone into prostitution or harmful acts",
+      "content": "Forcing another person into prostitution or other harmful sexual or economic activity is a serious offence under Malawian law. Survivors can seek police protection, medical care, and support services. They do not have to confront the person forcing them.",
+      "keywords": ["force prostitution", "forcing me", "coerce", "compelled", "force into sex work"],
+      "category": "penal_code"
+    },
+    {
+      "id": "penal-intimidation",
+      "act": "Penal Code (Chapter 7:01)",
+      "section": "Criminal intimidation",
+      "title": "Threats and intimidation",
+      "content": "Threatening a person with injury, exposure, or other harm in order to force them to do something is criminal intimidation. The person being threatened has the right to report to the police and seek protection.",
+      "keywords": ["threaten", "intimidation", "scared", "force me by threat", "threatening me"],
+      "category": "penal_code"
+    }
+  ]
+}

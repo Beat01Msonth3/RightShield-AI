@@ -1,6 +1,6 @@
 import type { AIProvider } from './types';
 import type { AIResponse } from '@/types/chat';
-import { FALLBACK_RESPONSE } from './prompts';
+import { getFallbackResponse } from './prompts';
 import { GeminiProvider } from './gemini';
 import { GroqProvider } from './groq';
 import { OpenRouterProvider } from './openrouter';
@@ -22,7 +22,7 @@ export async function generateAIResponse(
       if (!available) continue;
 
       const rawResult = await (provider as any).generate(userMessage, context, language);
-      return validateAIResponse(rawResult);
+      return validateAIResponse(rawResult, userMessage);
     } catch (err) {
       console.error(`[AI] Provider ${provider.name} failed:`, (err as Error).message);
       continue;
@@ -30,12 +30,14 @@ export async function generateAIResponse(
   }
 
   // All providers failed or not configured — return safe fallback
-  return { ...FALLBACK_RESPONSE };
+  return getFallbackResponse(userMessage);
 }
 
-export function validateAIResponse(data: unknown): AIResponse {
+export function validateAIResponse(data: unknown, userMessage = ''): AIResponse {
+  const fallback = getFallbackResponse(userMessage);
+
   if (!data || typeof data !== 'object') {
-    return { ...FALLBACK_RESPONSE };
+    return fallback;
   }
 
   const d = data as Record<string, unknown>;
@@ -54,12 +56,22 @@ export function validateAIResponse(data: unknown): AIResponse {
   return {
     category,
     severity,
-    acknowledgement: typeof d.acknowledgement === 'string' ? d.acknowledgement : FALLBACK_RESPONSE.acknowledgement,
-    explanation: typeof d.explanation === 'string' ? d.explanation : FALLBACK_RESPONSE.explanation,
-    legalInformation: Array.isArray(d.legalInformation) ? d.legalInformation : [],
-    nextSteps: Array.isArray(d.nextSteps) ? (d.nextSteps as string[]) : FALLBACK_RESPONSE.nextSteps,
-    resources: Array.isArray(d.resources) ? d.resources : FALLBACK_RESPONSE.resources,
+    acknowledgement: typeof d.acknowledgement === 'string' && d.acknowledgement.length > 0
+      ? d.acknowledgement
+      : fallback.acknowledgement,
+    explanation: typeof d.explanation === 'string' && d.explanation.length > 0
+      ? d.explanation
+      : fallback.explanation,
+    legalInformation: Array.isArray(d.legalInformation) ? (d.legalInformation as AIResponse['legalInformation']) : [],
+    nextSteps: Array.isArray(d.nextSteps) && (d.nextSteps as unknown[]).length > 0
+      ? (d.nextSteps as string[])
+      : fallback.nextSteps,
+    resources: Array.isArray(d.resources) && (d.resources as unknown[]).length > 0
+      ? (d.resources as AIResponse['resources'])
+      : fallback.resources,
     emergency: typeof d.emergency === 'boolean' ? d.emergency : false,
-    disclaimer: typeof d.disclaimer === 'string' ? d.disclaimer : FALLBACK_RESPONSE.disclaimer,
+    disclaimer: typeof d.disclaimer === 'string' && d.disclaimer.length > 0
+      ? d.disclaimer
+      : fallback.disclaimer,
   };
 }

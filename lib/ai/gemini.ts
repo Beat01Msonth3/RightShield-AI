@@ -21,12 +21,12 @@ export class GeminiProvider implements AIProvider {
       throw new Error('Gemini API key not configured');
     }
 
-    const modelsToTry = [
-      this.primaryModel,
-      'gemini-1.5-flash',
-      'gemini-2.0-flash',
-      'gemini-1.5-pro',
-    ];
+      const modelsToTry = [
+    this.primaryModel,
+    'gemini-flash-latest',
+    'gemini-flash-lite-latest',
+    'gemini-2.5-flash',
+  ];
 
     // Remove duplicates
     const uniqueModels = Array.from(new Set(modelsToTry));

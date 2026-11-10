@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Card } from '@/components/ui/Card';
+import { SketchShield, SketchScale, SketchBook } from '@/components/ui/SketchIcons';
 
 const TOPICS = [
   {
     id: 'domestic',
     title: 'Prevention of Domestic Violence Act (2006)',
-    icon: '🏠',
+    icon: 'shield',
     sections: [
       {
         num: 'Section 2',
@@ -30,7 +31,7 @@ const TOPICS = [
   {
     id: 'sexual',
     title: 'Penal Code — Sexual Offences (Cap 7:01)',
-    icon: '⚖️',
+    icon: 'scale',
     sections: [
       {
         num: 'Section 132',
@@ -47,7 +48,7 @@ const TOPICS = [
   {
     id: 'gender',
     title: 'Gender Equality Act (2013)',
-    icon: '⚖️',
+    icon: 'scale',
     sections: [
       {
         num: 'Section 6',
@@ -64,7 +65,7 @@ const TOPICS = [
   {
     id: 'constitution',
     title: 'Constitution of the Republic of Malawi',
-    icon: '📜',
+    icon: 'book',
     sections: [
       {
         num: 'Section 19',
@@ -84,6 +85,13 @@ const TOPICS = [
     ],
   },
 ];
+
+// Helper to render the correct sketch icon
+const TopicIcon = ({ type, className }: { type: string; className?: string }) => {
+  if (type === 'shield') return <SketchShield className={className} />;
+  if (type === 'book') return <SketchBook className={className} />;
+  return <SketchScale className={className} />;
+};
 
 export default function HelpPage() {
   const [selectedTopic, setSelectedTopic] = useState(TOPICS[0].id);
@@ -114,7 +122,7 @@ export default function HelpPage() {
                 : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50'
             }`}
           >
-            <span>{topic.icon}</span>
+            <TopicIcon type={topic.icon} className="w-4 h-4" />
             <span>{topic.title.split('—')[0].trim()}</span>
           </button>
         ))}
@@ -128,7 +136,7 @@ export default function HelpPage() {
 
         <div className="grid gap-4">
           {current.sections.map((sec, idx) => (
-            <Card key={idx} variant="bordered" className="space-y-2">
+            <Card key={idx} variant="bordered" className="space-y-2 p-4">
               <div className="flex items-center justify-between">
                 <span className="px-2.5 py-0.5 text-[11px] font-bold bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 rounded">
                   {sec.num}

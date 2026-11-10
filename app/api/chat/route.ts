@@ -4,7 +4,10 @@ import { sanitizeInput } from '@/lib/utils/sanitization';
 import { checkRateLimit } from '@/lib/utils/rate-limit';
 import { runRAGPipeline } from '@/lib/rag';
 import { getCrisisResponse } from '@/lib/safety/crisis';
-import { getDomesticViolenceResponse } from '@/lib/safety/domestic-violence';
+import {
+  extractVictimRoleFromMessage,
+  getDomesticViolenceResponse,
+} from '@/lib/safety/domestic-violence';
 import { getSexualViolenceResponse } from '@/lib/safety/sexual-violence';
 import { generateAIResponse } from '@/lib/ai/provider';
 import { getDemoResponse } from '@/lib/demo/responses';
@@ -64,11 +67,14 @@ export async function POST(req: Request) {
       });
     }
 
+    // 6. Extract the situation ONCE — used by both DV and SV branches below
+    const situation = extractVictimRoleFromMessage(sanitizedMsg);
+
     // Clear domestic-violence disclosures receive deterministic survivor-first guidance.
     if (safetyClassification.flags.includes('domestic_violence')) {
       return NextResponse.json({
         success: true,
-        data: getDomesticViolenceResponse(),
+        data: getDomesticViolenceResponse(situation),
         safetyLevel: safetyClassification.level,
       });
     }
@@ -77,15 +83,15 @@ export async function POST(req: Request) {
     if (safetyClassification.flags.includes('sexual_violence')) {
       return NextResponse.json({
         success: true,
-        data: getSexualViolenceResponse(),
+        data: getSexualViolenceResponse(situation),
         safetyLevel: safetyClassification.level,
       });
     }
 
-    // 6. Generate AI Response via Multi-provider chain
+    // 7. Generate AI Response via Multi-provider chain
     const aiData = await generateAIResponse(sanitizedMsg, context, language);
 
-    // 7. Return structured output with security headers
+    // 8. Return structured output with security headers
     return NextResponse.json(
       {
         success: true,

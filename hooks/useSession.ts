@@ -37,7 +37,7 @@ export function useSession() {
 
       try {
         const controller = new AbortController();
-        const timeoutId = window.setTimeout(() => controller.abort(), 30_000);
+        const timeoutId = window.setTimeout(() => controller.abort(), 60_000);
         const response = await fetch('/api/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -56,10 +56,15 @@ export function useSession() {
           throw new Error(data.error || 'Request failed');
         }
 
+        const aiData = data.data ?? {};
+        const ack = aiData.acknowledgement || '';
+        const expl = aiData.explanation || '';
+        const combined = [ack, expl].filter(Boolean).join('\n\n');
+
         store.updateMessage(loadingId, {
           isLoading: false,
-          content: data.data.acknowledgement + '\n\n' + data.data.explanation,
-          aiResponse: data.data,
+          content: combined || 'I could not generate a reply. Please try again.',
+          aiResponse: aiData,
           safetyLevel: data.safetyLevel as ChatMessage['safetyLevel'],
         });
 

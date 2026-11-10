@@ -1,0 +1,36 @@
+{
+  "act": "Child Care, Protection and Justice Act",
+  "actShort": "CCPJA 2010",
+  "year": 2010,
+  "jurisdiction": "Malawi",
+  "totalEntries": 3,
+  "entries": [
+    {
+      "id": "ccpja-exploitation",
+      "act": "Child Care, Protection and Justice Act (2010)",
+      "section": "Protection from exploitation",
+      "title": "Prohibition of sexual and economic exploitation of children",
+      "content": "It is an offence to force, procure or allow a child to engage in prostitution or any form of sexual or economic exploitation. A parent or guardian who forces a child into prostitution commits a serious offence. The child can be removed to a place of safety and the offender can be prosecuted.",
+      "keywords": ["prostitution", "force me to start prostitution", "selling me", "exploitation", "child prostitution", "mother forcing", "force into prostitution", "sex work"],
+      "category": "child_protection"
+    },
+    {
+      "id": "ccpja-forced-marriage-child",
+      "act": "Child Care, Protection and Justice Act / Marriage Act",
+      "section": "Child marriage",
+      "title": "Forced marriage of a child is unlawful",
+      "content": "Forcing a child into marriage is prohibited. The child has the right to protection. Police, social welfare officers, or a court can intervene to stop the forced marriage and protect the child.",
+      "keywords": ["forced marriage", "child marriage", "dad forcing me to marry", "father forcing marriage", "parents forcing marriage"],
+      "category": "child_protection"
+    },
+    {
+      "id": "ccpja-place-of-safety",
+      "act": "Child Care, Protection and Justice Act (2010)",
+      "section": "Place of safety",
+      "title": "Child can be taken to a place of safety",
+      "content": "When a child is at risk of exploitation, abuse or forced marriage, authorities can remove the child to a place of safety. The child does not have to stay in the harmful home while the case is handled.",
+      "keywords": ["place of safety", "remove child", "protect child", "safe place for child"],
+      "category": "child_protection"
+    }
+  ]
+}
